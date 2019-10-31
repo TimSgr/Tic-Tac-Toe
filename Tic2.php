@@ -1,4 +1,22 @@
 <?php
+function zwischen(){
+    
+}
+function display($spiel){
+    echo "  A | B | C ";
+   
+
+    foreach ($spiel as $key => $reihe){ 
+        echo "\n";
+        echo "  ----------";
+        echo "\n";
+        echo $key. ' ' . ($reihe['a'] ?? ' '). " | ". ($reihe['b']  ?? ' '). " | ". ($reihe['c']  ?? ' ');
+       
+    }
+    
+    echo "\n";
+}
+
 
 
 // Refactoring - Funktion die Einlesefunktion überprüft eingabe
@@ -7,27 +25,14 @@ function main () {
     $eingaben=["1A","2A","3A","1B", "2B", "3B", "1C","2C", "3C"];
 
     $spiel = [
-        1 => ['a' => null, null, null], 
-        2 => ['b' => null, null, null],
-        3 => ['c' => null, null, null]
+        1 => ['a' => null,'b'=> null,'c'=> null], 
+        2 => ['a' => null,'b'=> null,'c'=> null],
+        3 => ['a' => null,'b'=> null,'c'=> null]
     ];
 
     for( $i=0; $i<=8; $i++) {
-       
-        echo "  A | B | C ";
-        echo "\n";
-        echo "  ------------";
-        echo "\n";
-        echo "1  ".   $spiel[1]['a'] ."  |  ".  $spiel[1]['b'] ."  |  ". $spiel[1]['c'];
-        echo "\n";
-        echo "  ------------";
-        echo "\n";
-        echo "2  ".   $spiel[2]['a'] ."  |  ".  $spiel[2]['b'] ."  |  ". $spiel[2]['c'];
-        echo "\n";
-        echo "  ------------";
-        echo "\n";
-        echo "3  ".   $spiel[3]['a'] ."  |  ".  $spiel[3]['b'] ."  |  ". $spiel[3]['c'];
-        echo "\n";
+       display($spiel);
+        
         $symbol1=readline("Player 1: What is your next move? ");
         
     $i=3;
@@ -57,22 +62,7 @@ function main () {
     {   
         echo "Player 1 wins \n"; $game1=1; break;
     }
-        
-    
-        echo "  A | B | C ";
-        echo "\n";
-        echo "  ------------";
-        echo "\n";
-        echo "1  ".   $spiel[1]['a'] ."  |  ".  $spiel[1]['b'] ."  |  ". $spiel[1]['c'];
-        echo "\n";
-        echo "  ------------";
-        echo "\n";
-        echo "2  ".   $spiel[2]['a'] ."  |  ".  $spiel[2]['b'] ."  |  ". $spiel[2]['c'];
-        echo "\n";
-        echo "  ------------";
-        echo "\n";
-        echo "3  ".   $spiel[3]['a'] ."  |  ".  $spiel[3]['b'] ."  |  ". $spiel[3]['c'];
-        echo "\n";
+        display($spiel);
         $symbol2=readline("Player 2: What is your next move? ");
     
         $j=3;
@@ -96,10 +86,8 @@ function main () {
             $j--;
          }
         }
-    
-    
-       if ($spiel[0][0]=="O" && $spiel[0][1]=="O" && $spiel[0][2]=="O" || $spiel[1][0]=="O" && $spiel[1][1]=="O" && $spiel[1][2]=="O" || $spiel[2][0]=="O" && $spiel[2][1]=="O" && $spiel[2][2]=="O" || $spiel[0][0]=="O" && $spiel[1][1]=="O" && $spiel[2][2]=="O" ||
-       $spiel[0][2]=="O" && $spiel[1][1]=="O" && $spiel[2][0]=="O" || $spiel[0][0]=="O" && $spiel[1][0]=="O" && $spiel[2][0]=="O" || $spiel[0][2]=="O" && $spiel[1][2]=="O" && $spiel[2][2]=="O" || $spiel[0][1]=="O" && $spiel[1][1]=="O" && $spiel[2][1]="O")
+    if ($spiel[1]['a']=="O" && $spiel[1]['b']=="O" && $spiel[1]['c']=="O" || $spiel[2]['a']=="O" && $spiel[2]['b']=="O" && $spiel[2]['c']=="O" || $spiel[3]['a']=="O" && $spiel[3]['b']=="O" && $spiel[3]['c']=="O" || $spiel[1]['a']=="O" && $spiel[2]['b']=="O" && $spiel[3]['c']=="O" ||
+        $spiel[1]['a']=="O" && $spiel[2]['a']=="O" && $spiel[3]['a']=="O" || $spiel[1]['b']=="O" && $spiel[2]['b']=="O" && $spiel[3]['b']=="O" || $spiel[1]['c']=="O" && $spiel[2]['c']=="O" && $spiel[3]['c']=="O" || $spiel[1]['c']=="O" && $spiel[2]['b']=="O" && $spiel[3]['a']="O")
        {
            echo "Player 2 wins \n"; $game2=1; break;
        }
